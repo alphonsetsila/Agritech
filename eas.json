@@ -1,0 +1,11 @@
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk",
+        "node": "18.16.0", 
+        "image": "latest"  
+      }
+    }
+  }
+}

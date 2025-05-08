@@ -1,43 +1,57 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: 'green',
+        tabBarInactiveTintColor: 'gray',
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarStyle: {
+          elevation: 8,
+          shadowOpacity: 0,
+          height: 60,
+          paddingBottom: 5
+        }
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Accueil',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="transfer"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Transfert',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="swap-horizontal-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="challenges/index"
+        options={{
+          title: 'Défis',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="trophy-outline" size={size} color={color} />
+          ),
+          tabBarButton: () => null, // Cache uniquement cet onglet
+        }}
+      />
+      <Tabs.Screen
+        name="login"
+        options={{
+          title: 'Connexion',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="log-in-outline" size={size} color={color} /> // Icône plus appropriée
+          ),
+          // Retirez tabBarButton: () => null pour afficher l'onglet
         }}
       />
     </Tabs>
