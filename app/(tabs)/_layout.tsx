@@ -1,5 +1,5 @@
-import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
   return (
@@ -15,9 +15,18 @@ export default function TabLayout() {
           paddingBottom: 5
         }
       }}
-    >
+    > <Tabs.Screen
+    name="login"
+    options={{
+      title: 'Connexion',
+      tabBarIcon: ({ color, size }) => (
+        <Ionicons name="log-in-outline" size={size} color={color} /> // Icône plus appropriée
+      ),
+      // Retirez tabBarButton: () => null pour afficher l'onglet
+    }}
+  />
       <Tabs.Screen
-        name="index"
+        name="accueil"
         options={{
           title: 'Accueil',
           tabBarIcon: ({ color, size }) => (
@@ -44,16 +53,7 @@ export default function TabLayout() {
           tabBarButton: () => null, // Cache uniquement cet onglet
         }}
       />
-      <Tabs.Screen
-        name="login"
-        options={{
-          title: 'Connexion',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="log-in-outline" size={size} color={color} /> // Icône plus appropriée
-          ),
-          // Retirez tabBarButton: () => null pour afficher l'onglet
-        }}
-      />
+     
     </Tabs>
-  );
-}
+  ); 
+} 
